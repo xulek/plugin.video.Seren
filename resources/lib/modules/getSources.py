@@ -1,11 +1,18 @@
-import json, sys, threading, re, time, random, os, copy
+import copy
+import json
+import os
+import random
+import re
+import sys
+import threading
+import time
 
-from resources.lib.common import tools
 from resources.lib.common import source_utils
-from resources.lib.modules import resolver as resolver
-from resources.lib.modules import database
+from resources.lib.common import tools
 from resources.lib.debrid import premiumize
 from resources.lib.debrid import real_debrid
+from resources.lib.modules import database
+from resources.lib.modules import resolver as resolver
 
 sysaddon = sys.argv[0]
 
@@ -107,14 +114,14 @@ class Sources(tools.dialogWindow):
             # Extract arguments from url
             self.args = json.loads(tools.unquote(args))
 
-            tools.log('Starting Scraping', 'debug')
+            tools.log(tools.lang(32162), 'debug')
 
             if 'showInfo' in self.args:
                 background = self.args['showInfo']['art']['fanart']
             else:
                 background = self.args['fanart']
 
-            self.setText("Checking Local Results")
+            self.setText(tools.lang(32163))
             self.setBackground(background)
 
             # tools.progressDialog.create(tools.addonName)
@@ -129,7 +136,7 @@ class Sources(tools.dialogWindow):
             self.updateProgress()
 
             if not self.prem_terminate():
-                self.setText('Initializing Providers')
+                self.setText(tools.lang(32164))
                 self.initProviders()
                 # Load threads for all sources
                 for i in self.torrentProviders:
@@ -142,13 +149,13 @@ class Sources(tools.dialogWindow):
                 for i in self.threads:
                     i.start()
 
-                self.setText("Scraping Sources")
+                self.setText(tools.lang(32165))
                 # Keep alive for gui display and threading
                 timeout = int(tools.getSetting('general.timeout'))
-                tools.log('Entering Keep Alive', 'info')
+                tools.log(tools.lang(32166), 'info')
                 runtime = 0
                 while self.progress < 100:
-                    tools.log('Remainin Providers %s' % self.remainingProviders)
+                    tools.log('%s %s' % (tools.lang(32167), self.remainingProviders))
                     if self.prem_terminate() is True or len(self.remainingProviders) == 0:
                         break
 
@@ -165,13 +172,15 @@ class Sources(tools.dialogWindow):
                             tools.colorString(self.torrents_qual_len[2] + self.hosters_qual_len[2]),
                             tools.colorString(self.torrents_qual_len[3] + self.hosters_qual_len[3]),
                         ))
-                        self.setText2("Torrents: %s | Cached: %s | Hosters: %s" % (
+                        self.setText2("%s: %s | Cached: %s | %s: %s" % (
+                            tools.lang(32090),
                             tools.colorString(len(self.allTorrents)),
                             tools.colorString(len(self.torrentCacheSources)),
+                            tools.lang(32091),
                             tools.colorString(len(self.hosterSources))
                         ))
                         self.setText3(
-                            "Remaining Sources: %s" % tools.colorString(len(self.remainingProviders)))
+                            "%s: %s" % (tools.lang(32168), tools.colorString(len(self.remainingProviders))))
                     except:
                         import traceback
                         traceback.print_exc()
@@ -181,7 +190,7 @@ class Sources(tools.dialogWindow):
                     runtime += 1
                     self.progress = int(100 - float(1 - (runtime / float(timeout))) * 100)
 
-                tools.log('Exited Keep Alive', 'info')
+                tools.log(tools.lang(32166), 'info')
 
             self.debridHosterDuplicates()
 
@@ -212,7 +221,8 @@ class Sources(tools.dialogWindow):
 
             if not self.silent:
                 if self.duplicates_amount > 0:
-                    tools.showDialog.notification(tools.addonName, '%s duplicate entries removed' % str(self.duplicates_amount))
+                    tools.showDialog.notification(tools.addonName,
+                                                  '%s %s' % (str(self.duplicates_amount), tools.lang(32169)))
 
             self.build_cache_assist(self.args)
 
@@ -298,14 +308,13 @@ class Sources(tools.dialogWindow):
                             if sorted_list > 0:
                                 build_list.append(sorted_list[0])
         else:
-            yesno = tools.showDialog.yesno('%s - Cache Assist' % tools.addonName, 'No Playable Sources were found'
-                                                        '\nWould you like to attempt to cache a torrent?')
+            yesno = tools.showDialog.yesno('%s - %s' % (tools.addonName, tools.lang(32178)), tools.lang(32170))
             if yesno == 0:
                 return
             display_list = ['%sS | %s | %s | %s' %
                             (i['seeds'], i['provider'], tools.source_size_display(i['size']), i['release_title'])
                             for i in self.allTorrents]
-            selection = tools.showDialog.select('%s - Select Torrent to Cache' % tools.addonName, display_list)
+            selection = tools.showDialog.select('%s - %s' % (tools.addonName, tools.lang(32171)), display_list)
             if selection == -1:
                 return
             build_list.append(self.allTorrents[selection])
@@ -325,7 +334,6 @@ class Sources(tools.dialogWindow):
         torrent_providers = sourceList[0]
         hoster_providers = sourceList[1]
         self.hosterDomains = resolver.Resolver().getHosterList()
-
         '''FILTER PROVIDERS ACCORDING TO DATABASE'''
         self.torrentProviders = torrent_providers
         self.hosterProviders = hoster_providers
@@ -395,13 +403,15 @@ class Sources(tools.dialogWindow):
                         allTorrents.append(pre)
                     else:
                         self.duplicates_amount += 1
-                tools.log('%s scrape took %s seconds' % (provider_name, time.time() - start_time))
+                tools.log(
+                    '%s %s %s %s' % (provider_name, time.time() - start_time, tools.lang(32172), tools.lang(32174)))
                 start_time = time.time()
                 # Check Debrid Providers for cached copies
                 self.storeTorrentResults(self.trakt_id, allTorrents)
                 self.torrentCacheSources += TorrentCacheCheck().torrentCacheCheck(allTorrents, info)
                 self.allTorrents += allTorrents
-                tools.log('%s cache check took %s seconds' % (provider_name, time.time() - start_time))
+                tools.log(
+                    '%s %s %s %s' % (provider_name, time.time() - start_time, tools.lang(32173), tools.lang(32174)))
             self.remainingProviders.remove(provider_name)
 
             return
@@ -564,21 +574,23 @@ class Sources(tools.dialogWindow):
         ]
         self.hosters_qual_len = list2
 
-        string1 = 'Torrents - 4K: %s | 1080: %s | 720: %s | SD: %s' % (self.colorNumber(list1[0]),
-                                                                       self.colorNumber(list1[1]),
-                                                                       self.colorNumber(list1[2]),
-                                                                       self.colorNumber(list1[3]))
+        string1 = '%s - 4K: %s | 1080: %s | 720: %s | SD: %s' % (tools.lang(32090),
+                                                                 self.colorNumber(list1[0]),
+                                                                 self.colorNumber(list1[1]),
+                                                                 self.colorNumber(list1[2]),
+                                                                 self.colorNumber(list1[3]))
 
-        string2 = 'Hosters - 4k: %s | 1080: %s | 720: %s | SD: %s' % (self.colorNumber(list2[0]),
-                                                                       self.colorNumber(list2[1]),
-                                                                       self.colorNumber(list2[2]),
-                                                                       self.colorNumber(list2[3]))
+        string2 = '%s - 4k: %s | 1080: %s | 720: %s | SD: %s' % (tools.lang(32091),
+                                                                 self.colorNumber(list2[0]),
+                                                                 self.colorNumber(list2[1]),
+                                                                 self.colorNumber(list2[2]),
+                                                                 self.colorNumber(list2[3]))
 
-        string4 = 'Free Hosters - 4k: 0 | 1080: 0 | 720: 0 | SD: 0'
+        string4 = '%s - 4k: 0 | 1080: 0 | 720: 0 | SD: 0' % tools.lang(32175)
         providerString = ''
         for i in self.remainingProviders:
             providerString += ', ' + tools.colorString(str(i))
-        string3 = 'Remaining Providers - %s' % providerString[2:]
+        string3 = '%s - %s' % (tools.lang(32176), providerString[2:])
 
         return [string1, string2, string3, string4]
 
@@ -666,7 +678,7 @@ class Sources(tools.dialogWindow):
             if type == 0:
                 # Terminating on Torrents only
                 if len([i for i in self.torrentCacheSources if i['quality'] in prem_resolutions]) >= limit:
-                    tools.log('Pre-emptively Terminated', 'info')
+                    tools.log('%s' % tools.lang(32177), 'info')
                     return True
             if type == 1:
                 # Terminating on Hosters only

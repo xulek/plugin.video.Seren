@@ -1,13 +1,15 @@
-import os, sys
+import os
+import sys
+
 from resources.lib.common import tools
 from resources.lib.modules import database
+
 
 class providers:
 
     def __init__(self):
-        # self.language = tools.getSetting('general.language')
-        self.language = 'en'
-        tools.progressDialog.create(tools.addonName, 'Please Wait, Building Provider List')
+        self.language = tools.getSetting('general.language')
+        tools.progressDialog.create(tools.addonName, tools.lang(32145))
         self.known_providers = database.get_providers()
         tools.progressDialog.close()
         self.update_known_providers()
@@ -77,8 +79,9 @@ class providers:
         display_list = ["%s - %s" % (tools.colorString(i['provider_name'].upper()), i['provider_type'].title())
                         for i in providers if i['status'] == status]
 
-        selection = tools.showDialog.multiselect("%s: %s Providers" %
-                                                 (tools.addonName, action[:-1].title()), display_list)
+        selection = tools.showDialog.multiselect("%s: %s %s" %
+                                                 (tools.addonName, action[:-1].title(), tools.lang(32123)),
+                                                 display_list)
 
         if selection is None:
             return
@@ -92,14 +95,14 @@ class providers:
         import shutil
         packages = list(set([provider['package'] for provider in self.known_providers]))
         if len(packages) == 0:
-            tools.showDialog.ok(tools.addonName, 'There are currently no packages installed')
+            tools.showDialog.ok(tools.addonName, tools.lang(32146))
             return
-        selection = tools.showDialog.select("%s: %s Providers" %
-                                            (tools.addonName, 'Uninstall'), packages)
+        selection = tools.showDialog.select("%s: %s %s" %
+                                            (tools.addonName, tools.lang(32149), tools.lang(32123)), packages)
         if selection == -1:
             return
         package_name = packages[selection]
-        confirm = tools.showDialog.yesno(tools.addonName, "Are you sure you wish to remove %s" % package_name)
+        confirm = tools.showDialog.yesno(tools.addonName, "%s %s" % (tools.lang(32147), package_name))
         if confirm == 0:
             return
 
@@ -110,4 +113,4 @@ class providers:
         if os.path.exists(modules_path):
             shutil.rmtree(modules_path)
         database.uninstall_provider_package(package_name)
-        tools.showDialog.ok(tools.addonName, '%s successfully uninstalled' % package_name)
+        tools.showDialog.ok(tools.addonName, '%s %s' % (package_name, (tools.lang(32148))))

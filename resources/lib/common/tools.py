@@ -1,4 +1,8 @@
-import threading, sys, os, json, unicodedata
+import json
+import os
+import sys
+import threading
+import unicodedata
 
 try:
     from urlparse import parse_qsl, parse_qs, unquote, urlparse
@@ -189,6 +193,8 @@ def closeDirectory(contentType, viewType='Default', sort=False):
         sortMethod(syshandle, xbmcplugin.SORT_METHOD_NONE)
     if viewType == '':
         viewType = 'Default'
+    if viewType.isdigit():
+        viewType = lang(int(viewType))
     viewType = viewTypes[viewType]
     xbmc.executebuiltin('Container.SetViewMode(%d)' % viewType)
     content(syshandle, contentType)
@@ -296,8 +302,8 @@ def remove_duplicate_dicts(src_lst, ignored_keys):
     return dst_lst
 
 def closeBusyDialog():
-    if int(kodiVersion) > 17:
-        execute('Dialog.Close(busydialognocancel')
+    if int(kodiVersion) > 18:
+        execute('Dialog.Close(busydialognoancel')
     else:
         execute('Dialog.Close(all,true)')
 

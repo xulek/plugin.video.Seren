@@ -181,4 +181,541 @@ msgctxt "#32044"
 msgid "Mark Unwatched"
 msgstr ""
 
+msgctxt "#32045"
+msgid "Play Style"
+msgstr ""
+
+msgctxt "#32046"
+msgid "Auto Play"
+msgstr ""
+
+msgctxt "#32047"
+msgid "Source Select"
+msgstr ""
+
+msgctxt "#32048"
+msgid "Source Select View"
+msgstr ""
+
+msgctxt "#32049"
+msgid "Dialog"
+msgstr ""
+
+msgctxt "#32050"
+msgid "List"
+msgstr ""
+
+msgctxt "#32051"
+msgid "UI Settings"
+msgstr ""
+
+msgctxt "#32052"
+msgid "TV Metadata location"
+msgstr ""
+
+msgctxt "#32053"
+msgid "TMDB"
+msgstr ""
+
+msgctxt "#32054"
+msgid "TVDB"
+msgstr ""
+
+msgctxt "#32055"
+msgid "Page Item Limit"
+msgstr ""
+
+msgctxt "#32056"
+msgid "Set Movie View"
+msgstr ""
+
+msgctxt "#32057"
+msgid "Default"
+msgstr ""
+
+msgctxt "#32058"
+msgid "Poster"
+msgstr ""
+
+msgctxt "#32059"
+msgid "Icon Wall"
+msgstr ""
+
+msgctxt "#32060"
+msgid "Shift"
+msgstr ""
+
+msgctxt "#32061"
+msgid "Info Wall"
+msgstr ""
+
+msgctxt "#32062"
+msgid "Wide List"
+msgstr ""
+
+msgctxt "#32063"
+msgid "Wall"
+msgstr ""
+
+msgctxt "#32064"
+msgid "Banner"
+msgstr ""
+
+msgctxt "#32065"
+msgid "Fanart"
+msgstr ""
+
+msgctxt "#32066"
+msgid "Set show View"
+msgstr ""
+
+msgctxt "#32067"
+msgid "Select Text Highlight Color..."
+msgstr ""
+
+msgctxt "#32068"
+msgid "Current Color"
+msgstr ""
+
+msgctxt "#32069"
+msgid "Smart Play Settings"
+msgstr ""
+
+msgctxt "#32070"
+msgid "Enabled Up Next Addon Integration"
+msgstr ""
+
+msgctxt "#32071"
+msgid "    Up Next Notifaction Time"
+msgstr ""
+
+msgctxt "#32072"
+msgid "Auto Playlist Creation"
+msgstr ""
+
+msgctxt "#32073"
+msgid "Auto Episode Resume"
+msgstr ""
+
+msgctxt "#32074"
+msgid "Force Episode Resume on Continue Watching Items"
+msgstr ""
+
+msgctxt "#32075"
+msgid "Pre-emptive Scraping"
+msgstr ""
+
+msgctxt "#32076"
+msgid "Enable Trakt Bookmarks"
+msgstr ""
+
+msgctxt "#32077"
+msgid "Enable Bookmark Prompt"
+msgstr ""
+
+msgctxt "#32078"
+msgid "General"
+msgstr ""
+
+msgctxt "#32079"
+msgid "Cache Torrent Info Locally"
+msgstr ""
+
+msgctxt "#32080"
+msgid "Hide x265 Items"
+msgstr ""
+
+msgctxt "#32081"
+msgid "Timeout"
+msgstr ""
+
+msgctxt "#32082"
+msgid "Auto Caching Assistant"
+msgstr ""
+
+msgctxt "#32083"
+msgid "Auto Add Un-Cached Sources to Debrid"
+msgstr ""
+
+msgctxt "#32084"
+msgid "    Assist Mode"
+msgstr ""
+
+msgctxt "#32085"
+msgid "Automatic"
+msgstr ""
+
+msgctxt "#32086"
+msgid "Manual Selection"
+msgstr ""
+
+msgctxt "#32087"
+msgid "    Preferred Cloud Location"
+msgstr ""
+
+msgctxt "#32088"
+msgid "Source Filters"
+msgstr ""
+
+msgctxt "#32089"
+msgid "Sort Sources Method"
+msgstr ""
+
+msgctxt "#32090"
+msgid "Torrents"
+msgstr ""
+
+msgctxt "#32091"
+msgid "Hosters"
+msgstr ""
+
+msgctxt "#32092"
+msgid "Resolution"
+msgstr ""
+
+msgctxt "#32093"
+msgid "Enable Secondary Filesize Sort"
+msgstr ""
+
+msgctxt "#32094"
+msgid "Source Filter Settings"
+msgstr ""
+
+msgctxt "#32095"
+msgid "Max Resolution"
+msgstr ""
+
+msgctxt "#32096"
+msgid "Pre-emptive Termination Settings"
+msgstr ""
+
+msgctxt "#32097"
+msgid "Enable Pre-emptive Termination"
+msgstr ""
+
+msgctxt "#32098"
+msgid "    Movie Resolution"
+msgstr ""
+
+msgctxt "#32099"
+msgid "    TV Shows Resolution"
+msgstr ""
+
+msgctxt "#32100"
+msgid "    Minimum Sources"
+msgstr ""
+
+msgctxt "#32101"
+msgid "    Terminate on... "
+msgstr ""
+
+msgctxt "#32102"
+msgid "Torrents Only"
+msgstr ""
+
+msgctxt "#32103"
+msgid "Hosters Only"
+msgstr ""
+
+msgctxt "#32104"
+msgid "Torrents/Hosters"
+msgstr ""
+
+msgctxt "#32105"
+msgid "Enable Account Expiry Notifications"
+msgstr ""
+
+msgctxt "#32106"
+msgid "Trakt Account Settings"
+msgstr ""
+
+msgctxt "#32107"
+msgid "Trakt Username"
+msgstr ""
+
+msgctxt "#32108"
+msgid "Authorize Trakt..."
+msgstr ""
+
+msgctxt "#32109"
+msgid "Revoke Trakt Authentication..."
+msgstr ""
+
+msgctxt "#32110"
+msgid "Premiumize Account Settings"
+msgstr ""
+
+msgctxt "#32111"
+msgid "Enable Premiumize"
+msgstr ""
+
+msgctxt "#32112"
+msgid "    Enable Torrents"
+msgstr ""
+
+msgctxt "#32113"
+msgid "    Enable Hosters"
+msgstr ""
+
+msgctxt "#32114"
+msgid "    Automatic Cloud Removal"
+msgstr ""
+
+msgctxt "#32115"
+msgid "        Max Fair-Use Percentage"
+msgstr ""
+
+msgctxt "#32116"
+msgid "Real Debrid Account Settings"
+msgstr ""
+
+msgctxt "#32117"
+msgid "Enable Real Debrid"
+msgstr ""
+
+msgctxt "#32118"
+msgid "Real Debrid Username"
+msgstr ""
+
+msgctxt "#32119"
+msgid "Authorize Real Debrid..."
+msgstr ""
+
+msgctxt "#32120"
+msgid "    Enable Torrents"
+msgstr ""
+
+msgctxt "#32121"
+msgid "    Enable Hosters"
+msgstr ""
+
+msgctxt "#32122"
+msgid "    Auto-Delete Torrents"
+msgstr ""
+
+msgctxt "#32123"
+msgid "Providers"
+msgstr ""
+
+msgctxt "#32124"
+msgid "Provider Packages"
+msgstr ""
+
+msgctxt "#32125"
+msgid "Install From File Manager..."
+msgstr ""
+
+msgctxt "#32126"
+msgid "Install From Web URL..."
+msgstr ""
+
+msgctxt "#32127"
+msgid "Uninstall Provider Package..."
+msgstr ""
+
+msgctxt "#32128"
+msgid "Package Options"
+msgstr ""
+
+msgctxt "#32129"
+msgid "Enable Providers..."
+msgstr ""
+
+msgctxt "#32130"
+msgid "Disable Providers..."
+msgstr ""
+
+msgctxt "#32131"
+msgid "API Keys"
+msgstr ""
+
+msgctxt "#32132"
+msgid "TMDB API Keys"
+msgstr ""
+
+msgctxt "#32133"
+msgid "TMDB API Key"
+msgstr ""
+
+msgctxt "#32134"
+msgid "Trakt API Keys"
+msgstr ""
+
+msgctxt "#32135"
+msgid "Trakt Client ID"
+msgstr ""
+
+msgctxt "#32136"
+msgid "Trakt Client Secret"
+msgstr ""
+
+msgctxt "#32137"
+msgid "TVDB API Keys"
+msgstr ""
+
+msgctxt "#32138"
+msgid "TVB Api Key"
+msgstr ""
+
+msgctxt "#32139"
+msgid "Experimental"
+msgstr ""
+
+msgctxt "#32140"
+msgid "Omni Connect"
+msgstr ""
+
+msgctxt "#32141"
+msgid "Enabled Omni Connect"
+msgstr ""
+
+msgctxt "#32142"
+msgid "Omni Connect Port"
+msgstr ""
+
+msgctxt "#32143"
+msgid "Accounts"
+msgstr ""
+
+msgctxt "#32144"
+msgid "Scraping"
+msgstr ""
+
+msgctxt "#32145"
+msgid "Please Wait, Building Provider List"
+msgstr ""
+
+msgctxt "#32146"
+msgid "There are currently no packages installed"
+msgstr ""
+
+msgctxt "#32147"
+msgid "Are you sure you wish to remove"
+msgstr ""
+
+msgctxt "#32148"
+msgid "successfully uninstalled"
+msgstr ""
+
+msgctxt "#32149"
+msgid "Uninstall"
+msgstr ""
+
+msgctxt "#32150"
+msgid "Language"
+msgstr ""
+
+msgctxt "#32151"
+msgid "This will completely wipe your addon settings.\nAre you completely sure you want to do this?"
+msgstr ""
+
+msgctxt "#32152"
+msgid "Please be aware this will completely wipe the following:\nCached Data, Settings, Installed Providers\n"
+msgstr ""
+
+msgctxt "#32153"
+msgid "Premiumize Fair Usage below threshold, no cleanup required"
+msgstr ""
+
+msgctxt "#32154"
+msgid "No seren transfers have been created"
+msgstr ""
+
+msgctxt "#32155"
+msgid "Premiumize Fair Usage is above threshold, cleaning up Seren transfers"
+msgstr ""
+
+msgctxt "#32156"
+msgid "Your Real Debrid Premium status has expired"
+msgstr ""
+
+msgctxt "#32157"
+msgid "Your Premiumize Premium status has expired"
+msgstr ""
+
+msgctxt "#32158"
+msgid "Performing Maintenance"
+msgstr ""
+
+msgctxt "#32159"
+msgid "Service Refreshing Real Debrid Token"
+msgstr ""
+
+msgctxt "#32160"
+msgid "Service Refreshing TVDB Token"
+msgstr ""
+
+msgctxt "#32161"
+msgid "ARE YOU SURE?"
+msgstr ""
+
+msgctxt "#32162"
+msgid "Starting Scraping"
+msgstr ""
+
+msgctxt "#32163"
+msgid "Checking Local Results"
+msgstr ""
+
+msgctxt "#32164"
+msgid "Initializing Providers"
+msgstr ""
+
+msgctxt "#32165"
+msgid "Scraping Sources"
+msgstr ""
+
+msgctxt "#32166"
+msgid "Entering Keep Alive"
+msgstr ""
+
+msgctxt "#32167"
+msgid "Remainin Providers"
+msgstr ""
+
+msgctxt "#32168"
+msgid "Remaining Sources"
+msgstr ""
+
+msgctxt "#32169"
+msgid "duplicate entries removed"
+msgstr ""
+
+msgctxt "#32170"
+msgid "No Playable Sources were found\nWould you like to attempt to cache a torrent?"
+msgstr ""
+
+msgctxt "#32171"
+msgid "Select Torrent to Cache"
+msgstr ""
+
+msgctxt "#32172"
+msgid "scrape took"
+msgstr ""
+
+msgctxt "#32173"
+msgid "cache check took"
+msgstr ""
+
+msgctxt "#32174"
+msgid "seconds"
+msgstr ""
+
+msgctxt "#32175"
+msgid "Free Hosters"
+msgstr ""
+
+msgctxt "#32176"
+msgid "Remaining Providers"
+msgstr ""
+
+msgctxt "#32177"
+msgid "Pre-emptively Terminated"
+msgstr ""
+
+msgctxt "#32178"
+msgid "Cache Assist"
+msgstr ""
+
+
 
