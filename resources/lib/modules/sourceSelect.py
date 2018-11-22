@@ -1,5 +1,7 @@
-from resources.lib.common import tools
 import os
+
+from resources.lib.common import tools
+
 
 def build_display_title(source):
     debrid_provider = tools.colorString(tools.shortened_debrid(source.get('debrid_provider', '')))
@@ -44,7 +46,7 @@ def sourceSelect(source_list, info):
             del window
 
         elif tools.getSetting('general.sourceselect') == '0':
-            selection = tools.showDialog.select(tools.addonName + ': Source Selection', display_list)
+            selection = tools.showDialog.select(tools.addonName + ': %s' % tools.lang(32249), display_list)
 
     except:
         import traceback
@@ -56,7 +58,7 @@ def sourceSelect(source_list, info):
             tools.playList.clear()
         except:
             pass
-        tools.log('Source Selection was cancelled', 'info')
+        tools.log(tools.lang(32250), 'info')
         return []
 
     return source_list[selection:]
@@ -125,6 +127,6 @@ class source_select_list(tools.dialogWindow):
 
     def doModal(self):
         tools.kodiGui.WindowDialog.doModal(self)
-        tools.log('Selected Position - %s' % self.list.getSelectedPosition())
+        tools.log('%s - %s' % (tools.lang(32251), self.list.getSelectedPosition()))
         self.clearProperties()
         return self.position

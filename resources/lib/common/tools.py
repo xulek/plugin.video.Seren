@@ -288,7 +288,7 @@ def clearCache():
     if confirm is 1:
         from resources.lib.modules import database
         database.cache_clear_all()
-        log(addonName + ': Cache Cleared', 'debug')
+        log(addonName + ': %s' % lang(32179), 'debug')
     else:
         pass
 

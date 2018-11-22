@@ -1,4 +1,9 @@
-import zipfile, xbmc, xbmcaddon, json, requests, os, base64
+import base64
+import json
+import os
+import requests
+import zipfile
+
 from resources.lib.common import tools
 from resources.lib.modules import customProviders
 
@@ -15,9 +20,9 @@ def install_zip(install_style):
     if install_style == None:
         browse_download = tools.showDialog.select(tools.addonName, ['Browse...', 'Web Location...'])
         if browse_download == 0:
-            zip_location = tools.fileBrowser(1, 'Locate Provider Zip', 'files', '.zip', True, False)
+            zip_location = tools.fileBrowser(1, tools.lang(32225), 'files', '.zip', True, False)
         elif browse_download == 1:
-            zip_location = tools.showKeyboard('', '%s: Enter Zip URL' % tools.addonName)
+            zip_location = tools.showKeyboard('', '%s: %s' % (tools.addonName, tools.lang(32226)))
             zip_location.doModal()
             if zip_location.isConfirmed() and zip_location.getText() != '':
                 zip_location = zip_location.getText()
@@ -27,9 +32,9 @@ def install_zip(install_style):
             return
     else:
         if install_style == '0':
-            zip_location = tools.fileBrowser(1, 'Locate Provider Zip', 'files', '.zip', True, False)
+            zip_location = tools.fileBrowser(1, tools.lang(32225), 'files', '.zip', True, False)
         if install_style == '1':
-            zip_location = tools.showKeyboard('', '%s: Enter Zip URL' % tools.addonName)
+            zip_location = tools.showKeyboard('', '%s: %s' % (tools.addonName, tools.lang(32226)))
             zip_location.doModal()
             if zip_location.isConfirmed() and zip_location.getText() != '':
                 zip_location = zip_location.getText()
@@ -39,13 +44,12 @@ def install_zip(install_style):
     if zip_location == '':
         return
     if zip_location.startswith('smb'):
-        tools.showDialog.ok(tools.addonName, 'Sorry, SMB shares are not supported')
+        tools.showDialog.ok(tools.addonName, tools.lang(32227))
         return
     if zip_location.startswith('http'):
         response = requests.get(zip_location, stream=True)
         if not response.ok:
-            tools.showDialog.ok(tools.addonName, 'Unable to connect to file.\n'
-                                                 'Please check URL and try again.')
+            tools.showDialog.ok(tools.addonName, tools.lang(32228))
         else:
             pass
         try:
@@ -89,15 +93,16 @@ def install_zip(install_style):
         traceback.print_exc()
         raise Exception
 
-    line1 = tools.colorString('Installing:') + " %s - v%s" % (pack_name, version)
-    line2 = tools.colorString("Author: ") + "%s" % author
-    line3 = "Are you sure you wish to proceed?"
-    accept = tools.showDialog.yesno(tools.addonName + " - Custom Sources Install", line1, line2, line3,
-                                    "Cancel", "Install")
+    line1 = tools.colorString(tools.lang(32229)) + " %s - v%s" % (pack_name, version)
+    line2 = tools.colorString("%s %s") % (tools.lang(32230), author)
+    line3 = tools.lang(32231)
+    accept = tools.showDialog.yesno(tools.addonName + " - %s" % tools.lang(32232), line1, line2, line3,
+                                    tools.lang(32233), tools.lang(32234))
     if accept == 0:
         return
 
-    install_progress = tools.progressDialog.create(tools.addonName, 'Extracting - %s' % pack_name, 'Please Wait...')
+    install_progress = tools.progressDialog.create(tools.addonName, '%s - %s' % (tools.lang(32235), pack_name),
+                                                   tools.lang(32236))
     try:
         for folder in folders:
             for zip_file in file_list:
@@ -108,16 +113,16 @@ def install_zip(install_style):
             install_progress.close()
         except:
             pass
-        tools.showDialog.ok(tools.addonName, 'Successfully Installed - %s' % pack_name)
+        tools.showDialog.ok(tools.addonName, '%s - %s' % (tools.lang(32237), pack_name))
     except:
         import traceback
         traceback.print_exc()
-        tools.showDialog.ok(tools.addonName, 'Failed to install - %s', 'Please check the log for further details')
+        tools.showDialog.ok(tools.addonName, tools.lang(32238) + ' - %s', tools.lang(32239))
     customProviders.providers().update_known_providers()
 
 def malformed_output():
-    tools.showDialog.ok(tools.addonName, 'Failed to install - %s', 'Please check the log for further details')
-    tools.log('Source pack is malformed, please check and correct issue in the meta file')
+    tools.showDialog.ok(tools.addonName, tools.lang(32238) + ' - %s', tools.lang(32239))
+    tools.log(tools.lang(32240))
 
 def deploy_init():
     folders = ['providerModules/', 'providers/']

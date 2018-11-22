@@ -1,10 +1,12 @@
-import sys, json
-from resources.lib.common import tools
-from resources.lib.indexers.trakt import TraktAPI
-from resources.lib.indexers.tmdb import TMDBAPI
-from resources.lib.indexers.imdb import scraper as imdb_scraper
-from resources.lib.modules import database
+import json
+import sys
 from threading import Thread
+
+from resources.lib.common import tools
+from resources.lib.indexers.imdb import scraper as imdb_scraper
+from resources.lib.indexers.tmdb import TMDBAPI
+from resources.lib.indexers.trakt import TraktAPI
+from resources.lib.modules import database
 
 sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1])
 trakt = TraktAPI()
@@ -44,14 +46,14 @@ class Menus:
         tools.addDirectoryItem(tools.lang(32013), 'moviesAnticipated&page=1', '', '')
         tools.addDirectoryItem(tools.lang(32015), 'moviesBoxOffice', '', '')
         tools.addDirectoryItem(tools.lang(32014), 'moviesUpdated&page=1', '', '')
-        tools.addDirectoryItem('Genres', 'movieGenres&page=1', '', '')
+        tools.addDirectoryItem(tools.lang(32200), 'movieGenres&page=1', '', '')
         tools.addDirectoryItem(tools.lang(32016), 'moviesSearch', '', '')
         tools.closeDirectory('addons')
 
     def myMovies(self):
         tools.addDirectoryItem(tools.lang(32017), 'moviesMyCollection', '', '')
         tools.addDirectoryItem(tools.lang(32018), 'moviesMyWatchlist', '', '')
-        tools.addDirectoryItem('My Movie Lists', 'myTraktLists&actionArgs=movies', '', '')
+        tools.addDirectoryItem(tools.lang(32201), 'myTraktLists&actionArgs=movies', '', '')
         tools.closeDirectory('addons', viewType=self.viewType)
 
     def myMovieCollection(self):
@@ -150,7 +152,7 @@ class Menus:
         tools.closeDirectory('movies', viewType=self.viewType)
 
     def movieGenres(self):
-        tools.addDirectoryItem('Multi Select...', 'movieGenresGet', '', '', isFolder=True)
+        tools.addDirectoryItem(tools.lang(32202), 'movieGenresGet', '', '', isFolder=True)
         genres = database.get(trakt.json_response, 24, 'genres/movies')
         for i in genres:
             tools.addDirectoryItem(i['name'], 'movieGenresGet&actionArgs=%s' % i['slug'], '', '', isFolder=True)
@@ -175,7 +177,8 @@ class Menus:
 
         traktList = trakt.json_response('movies/popular?genres=%s&page=%s' % (genre_string, page))
         self.commonListBuilder(traktList)
-        tools.addDirectoryItem('Next', 'movieGenresGet&actionArgs=%s&page=%s' % (tools.quote(genre_string), int(page)+1),
+        tools.addDirectoryItem(tools.lang(32203),
+                               'movieGenresGet&actionArgs=%s&page=%s' % (tools.quote(genre_string), int(page) + 1),
                                '', '', isFolder=True)
         tools.closeDirectory('videos', viewType=self.viewType)
 
@@ -184,7 +187,6 @@ class Menus:
     ######################################################
 
     def commonListBuilder(self, traktList, nextPath=None):
-        import traceback
 
         if len(traktList) == 0:
             return
@@ -222,8 +224,9 @@ class Menus:
                 # Begin Building Context Menu Items
                 cm = []
                 cm.append((tools.lang(32020), 'Container.Update(%s?action=moviesRelated&actionArgs=%s)' % (sysaddon, item['ids']['trakt'])))
-                cm.append(('Source Select', 'PlayMedia(%s?action=getSources&source_select=true&actionArgs=%s)' % (sysaddon, args)))
-                cm.append(('Trakt Manager', 'RunPlugin(%s?action=traktManager&actionArgs=%s)'
+                cm.append((tools.lang(32204),
+                           'PlayMedia(%s?action=getSources&source_select=true&actionArgs=%s)' % (sysaddon, args)))
+                cm.append((tools.lang(32205), 'RunPlugin(%s?action=traktManager&actionArgs=%s)'
                            % (sysaddon, tools.quote(json.dumps(item['trakt_object'])))))
             except:
                 continue

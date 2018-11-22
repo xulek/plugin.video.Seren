@@ -1,4 +1,7 @@
-import sys, os, threading
+import os
+import sys
+import threading
+
 from resources.lib.common import tools
 from resources.lib.debrid import premiumize as Premiumize
 from resources.lib.debrid import real_debrid
@@ -90,7 +93,7 @@ class Resolver(tools.dialogWindow):
             else:
                 background = args['fanart']
 
-            self.setText("Begining Link Resolver")
+            self.setText(tools.lang(32241))
             self.setBackground(background)
             stream_link = None
             loop_count = 0

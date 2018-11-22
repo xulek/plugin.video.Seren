@@ -1,7 +1,8 @@
 import sys
+
 from resources.lib.common import tools
-from resources.lib.indexers.trakt import TraktAPI
 from resources.lib.indexers.tmdb import TMDBAPI
+from resources.lib.indexers.trakt import TraktAPI
 
 sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1])
 trakt = TraktAPI()
@@ -16,7 +17,7 @@ class Menus:
             trakt = False
 
         if trakt:
-            tools.addDirectoryItem('Continue Watching', 'traktOnDeckHome', None, None)
+            tools.addDirectoryItem(tools.lang(32188), 'traktOnDeckHome', None, None)
         tools.addDirectoryItem(tools.lang(32001), 'moviesHome', None, None)
         tools.addDirectoryItem(tools.lang(32003), 'showsHome', None, None)
         if trakt:
@@ -34,26 +35,26 @@ class Menus:
         tools.closeDirectory('addons')
 
     def toolsMenu(self):
-        tools.addDirectoryItem('Provider Tools', 'providerTools', None, None)
+        tools.addDirectoryItem(tools.lang(32189), 'providerTools', None, None)
         if tools.getSetting('premiumize.enabled') == 'true' or tools.getSetting('realdebrid.enabled') == 'true':
-            tools.addDirectoryItem('Debrid Services', 'debridServices', None, None)
+            tools.addDirectoryItem(tools.lang(32190), 'debridServices', None, None)
         tools.addDirectoryItem(tools.lang(32042), 'clearCache', '', '', isFolder=False)
-        tools.addDirectoryItem('Clear Local Torrent cache', 'clearTorrentCache', '', '', isFolder=False)
+        tools.addDirectoryItem(tools.lang(32191), 'clearTorrentCache', '', '', isFolder=False)
         #tools.addDirectoryItem('Reset Silent Scrape Setting', 'resetSilent', '', '', isFolder=False)
-        tools.addDirectoryItem('Open Settings Menu', 'openSettings', '', '', isFolder=False)
-        tools.addDirectoryItem('Wipe Addon Data', 'cleanInstall', None, None, isFolder=False)
+        tools.addDirectoryItem(tools.lang(32192), 'openSettings', '', '', isFolder=False)
+        tools.addDirectoryItem(tools.lang(32193), 'cleanInstall', None, None, isFolder=False)
         tools.closeDirectory('addons')
 
     def providerMenu(self):
-        tools.addDirectoryItem('Install Provider Package', 'installProviders', None, None)
-        tools.addDirectoryItem('Uninstall Provider Package', 'uninstallProviders', None, None)
-        tools.addDirectoryItem('Enable Providers', 'adjustProviders&actionArgs=disabled', None, None)
-        tools.addDirectoryItem('Disable Providers', 'adjustProviders&actionArgs=enabled', None, None)
+        tools.addDirectoryItem(tools.lang(32194), 'installProviders', None, None)
+        tools.addDirectoryItem(tools.lang(32195), 'uninstallProviders', None, None)
+        tools.addDirectoryItem(tools.lang(32196), 'adjustProviders&actionArgs=disabled', None, None)
+        tools.addDirectoryItem(tools.lang(32197), 'adjustProviders&actionArgs=enabled', None, None)
         tools.closeDirectory('addons')
 
     def traktOnDeck(self):
-        tools.addDirectoryItem('Movies', 'onDeckMovies', None, None)
-        tools.addDirectoryItem('Shows', 'onDeckShows', None, None)
+        tools.addDirectoryItem(tools.lang(32198), 'onDeckMovies', None, None)
+        tools.addDirectoryItem(tools.lang(32199), 'onDeckShows', None, None)
         tools.closeDirectory('addons')
 
 def runTest():

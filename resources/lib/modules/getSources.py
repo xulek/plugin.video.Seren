@@ -678,7 +678,7 @@ class Sources(tools.dialogWindow):
             if type == 0:
                 # Terminating on Torrents only
                 if len([i for i in self.torrentCacheSources if i['quality'] in prem_resolutions]) >= limit:
-                    tools.log('%s' % tools.lang(32177), 'info')
+                    tools.log(tools.lang(32177), 'info')
                     return True
             if type == 1:
                 # Terminating on Hosters only

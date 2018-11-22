@@ -1,7 +1,11 @@
-import time, threading, json, xbmc
+import json
+import threading
+import time
+import xbmc
+
+from resources.lib.common import tools
 from resources.lib.debrid import premiumize
 from resources.lib.debrid import real_debrid
-from resources.lib.common import tools
 from resources.lib.modules import database
 
 monitor = xbmc.Monitor()
@@ -42,13 +46,13 @@ class CacheAssit:
 
         try:
             transfer_id = debrid.create_transfer(torrent_object['magnet'])['id']
-            tools.showDialog.notification(tools.addonName, 'Cache Assist is attempting to build a torrent source')
+            tools.showDialog.notification(tools.addonName, tools.lang(32214))
             database.add_assist_torrent(transfer_id, 'premiumize', 'queued',
                                         torrent_object['release_title'], str(current_percent))
         except:
-            tools.log('Failed to start premiumize debrid transfer', 'error')
+            tools.log(tools.lang(32215), 'error')
             return
-        tools.log('TRANSFER PREMIUMIZE')
+        tools.log(tools.lang(32219))
         timestamp = time.time()
         while not monitor.abortRequested():
             try:
@@ -61,7 +65,7 @@ class CacheAssit:
                                                 torrent_object['release_title'], str(current_percent))
                     if self.notified == False:
                         tools.showDialog.notification(tools.addonName + ': %s' % self.title,
-                                                      'New cached sources have been created for %s' % self.title,
+                                                      '%s %s' % (tools.lang(32216), self.title),
                                                       time=5000)
                         debrid.delete_transfer(transfer_id)
                     break
@@ -72,7 +76,7 @@ class CacheAssit:
                                                  str(current_percent))
                         # End the transfer if progress has stalled for over 30 minutes
                         debrid.delete_transfer(transfer_id)
-                        tools.log('Could not create cache for magnet- %s' % torrent_object['magnet'], 'info')
+                        tools.log('%s- %s' % (tools.lang(32217), torrent_object['magnet']), 'info')
                         break
                 else:
                     timestamp = time.time()
@@ -91,8 +95,8 @@ class CacheAssit:
 
     def real_debrid_downloader(self, torrent_object, args):
         from resources.lib.common import source_utils
-        tools.log('REAL DEBRID CACHE ASSIST STARTING')
-        tools.showDialog.notification(tools.addonName, 'Cache Assist is attempting to build a torrent source')
+        tools.log(tools.lang(32218))
+        tools.showDialog.notification(tools.addonName, tools.lang(32214))
         current_percent = 0
         episodeStrings, seasonStrings = source_utils.torrentCacheStrings(args)
         debrid = real_debrid.RealDebrid()
@@ -124,7 +128,7 @@ class CacheAssit:
                 current_percent = info['progress']
                 if info['status'] == 'downloaded':
                     tools.showDialog.notification(tools.addonName + ': %s' % self.title,
-                                                  'New cached sources have been created for %s' % self.title,
+                                                  '%s %s' % (tools.lang(32216), self.title),
                                                   time=5000)
                     database.add_assist_torrent(torrent_id, 'real_debrid', 'finished', torrent_object['release_title'],
                                                 str(current_percent))
@@ -139,7 +143,7 @@ class CacheAssit:
                     database.add_assist_torrent(torrent_id, 'real_debrid', 'failed', torrent_object['release_title'],
                                                 str(current_percent))
                     debrid.deleteTorrent(torrent_id)
-                    tools.log('Could not create cache for magnet- %s' % torrent_object['magnet'], 'info')
+                    tools.log('%s- %s' % (tools.lang(32217), torrent_object['magnet']), 'info')
                     break
             except:
                 debrid.deleteTorrent(torrent_id)

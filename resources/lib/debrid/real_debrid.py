@@ -1,6 +1,11 @@
-import requests, json, re, time
-from resources.lib.common import tools
+import json
+import re
+import requests
+import time
+
 from resources.lib.common import source_utils
+from resources.lib.common import tools
+
 
 class RealDebrid:
 
@@ -48,7 +53,7 @@ class RealDebrid:
         tools.progressDialog.create(tools.lang(32023))
         tools.progressDialog.update(-1, tools.lang(32024) + ' %s' % tools.colorString('https://real-debrid.com/device'),
                                     tools.lang(32025) + ' %s' % tools.colorString(response['user_code']),
-                                    'This code has been copied to your clipboard')
+                                    tools.lang(32180))
         self.OauthTimeout = int(response['expires_in'])
         self.OauthTimeStep = int(response['interval'])
         self.DeviceCode = response['device_code']
@@ -77,7 +82,7 @@ class RealDebrid:
         username = self.get_url('user')['username']
         tools.setSetting('rd.username', username)
         tools.showDialog.ok(tools.addonName, 'Real Debrid ' + tools.lang(32026))
-        tools.log('Authorised Real Debrid successfully', 'info')
+        tools.log(tools.lang(32181), 'info')
 
     def refreshToken(self):
         import time
@@ -94,7 +99,7 @@ class RealDebrid:
         tools.setSetting('rd.auth', self.token)
         tools.setSetting('rd.refresh', self.refresh)
         tools.setSetting('rd.expiry', str(time.time() + int(response['expires_in'])))
-        tools.log('Real Debrid Token Refreshed')
+        tools.log(tools.lang(32182))
         ###############################################
         # To be FINISHED FINISH ME
         ###############################################
@@ -130,7 +135,7 @@ class RealDebrid:
 
         response = requests.get(url).text
         if 'bad_token' in response or 'Bad Request' in response:
-            tools.log('Refreshing RD Token')
+            tools.log(tools.lang(32183))
             if not fail_check:
                 self.refreshToken()
                 response = self.get_url(original_url, fail_check=True)

@@ -1,8 +1,12 @@
-import sys, datetime, json
+import datetime
+import json
+import sys
+
+import AddonSignals
+
 from resources.lib.common import tools
 from resources.lib.indexers import trakt
 from resources.lib.modules import smartPlay
-import AddonSignals
 
 sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1])
 
@@ -44,10 +48,10 @@ class serenPlayer(tools.player):
                 item.setInfo(type='video', infoLabels=args['info'])
 
             if tools.playList.getposition() == 0 and tools.getSetting('smartPlay.traktresume') == 'true':
-                tools.log('Getting Trakt Resume Point', 'info')
+                tools.log(tools.lang(32221), 'info')
                 self.traktBookmark()
 
-            tools.log('Self Offset is equal to %s' % self.offset, 'info')
+            tools.log('%s %s' % (tools.lang(32222), self.offset), 'info')
 
 
             tools.resolvedUrl(syshandle, True, item)
@@ -71,11 +75,11 @@ class serenPlayer(tools.player):
             self.media_length = self.getTotalTime()
 
             if self.offset is not None and int(self.offset) != 0:
-                tools.log("Seeking %s seconds" % self.offset, 'info')
+                tools.log("%s %s %s" % (tools.lang(32223), self.offset, tools.lang(32174)), 'info')
                 self.seekTime(self.offset)
                 self.offset = None
             else:
-                tools.log("No seeking applied")
+                tools.log(tools.lang(32224))
 
             self.traktStartWatching()
             if 'episodeInfo' in self.args and tools.getSetting('smartplay.upnext') == 'true':

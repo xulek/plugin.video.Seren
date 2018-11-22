@@ -1,10 +1,14 @@
-import sys, json, datetime, copy
+import copy
+import datetime
+import json
+import sys
+from threading import Thread
+
 from resources.lib.common import tools
+from resources.lib.indexers.tmdb import TMDBAPI
 from resources.lib.indexers.trakt import TraktAPI
 from resources.lib.indexers.tvdb import TVDBAPI
-from resources.lib.indexers.tmdb import TMDBAPI
 from resources.lib.modules import database
-from threading import Thread
 
 sysaddon = sys.argv[0]
 syshandle = int(sys.argv[1])
@@ -47,17 +51,17 @@ class Menus:
         tools.addDirectoryItem(tools.lang(32012), 'showsCollected&page=1', '', '')
         tools.addDirectoryItem(tools.lang(32013), 'showsAnticipated&page=1', '', '')
         tools.addDirectoryItem(tools.lang(32014), 'showsUpdated&page=1', '', '')
-        tools.addDirectoryItem('Genres', 'showGenres', '', '')
+        tools.addDirectoryItem(tools.lang(32200), 'showGenres', '', '')
         tools.addDirectoryItem(tools.lang(32016), 'showsSearch', '', '')
         tools.closeDirectory('addons')
 
     def myShows(self):
         tools.addDirectoryItem(tools.lang(32017), 'showsMyCollection', '', '')
         tools.addDirectoryItem(tools.lang(32018), 'showsMyWatchlist', '', '')
-        tools.addDirectoryItem('Next Up', 'showsNextUp', '', '')
-        tools.addDirectoryItem('Unfinished Shows in Collection', 'showsMyProgress', '', '')
-        tools.addDirectoryItem('Recent Episodes', 'showsMyRecentEpisodes', '', '')
-        tools.addDirectoryItem('My Show Lists', 'myTraktLists&actionArgs=shows', '', '')
+        tools.addDirectoryItem(tools.lang(32206), 'showsNextUp', '', '')
+        tools.addDirectoryItem(tools.lang(32207), 'showsMyProgress', '', '')
+        tools.addDirectoryItem(tools.lang(32208), 'showsMyRecentEpisodes', '', '')
+        tools.addDirectoryItem(tools.lang(32209), 'myTraktLists&actionArgs=shows', '', '')
         tools.closeDirectory('addons')
 
     def myShowCollection(self):
@@ -247,7 +251,8 @@ class Menus:
         page = int(page)
         traktList = trakt.json_response('shows/popular?genres=%s&page=%s&extended=full' % (genre_string, page))
         self.showListBuilder(traktList)
-        tools.addDirectoryItem('Next', 'showGenresGet&actionArgs=%s&page=%s' % (genre_string, page+1), None, None)
+        tools.addDirectoryItem(tools.lang(32203), 'showGenresGet&actionArgs=%s&page=%s' % (genre_string, page + 1),
+                               None, None)
         tools.closeDirectory('videos', viewType=self.viewType)
 
     def showsRelated(self, args):
@@ -298,7 +303,7 @@ class Menus:
                 except:
                     pass
             try:
-                cm.append(('Trakt Manager', 'RunPlugin(%s?action=traktManager&actionArgs=%s&type=episode)'
+                cm.append((tools.lang(32205), 'RunPlugin(%s?action=traktManager&actionArgs=%s&type=episode)'
                            % (sysaddon, tools.quote(json.dumps(item['trakt_object'])))))
                 args = {'showInfo': {}, 'seasonInfo': {}}
 
@@ -364,7 +369,7 @@ class Menus:
                     except:
                         pass
 
-                    cm.append(('Trakt Manager', 'RunPlugin(%s?action=traktManager&actionArgs=%s)'
+                    cm.append((tools.lang(32205), 'RunPlugin(%s?action=traktManager&actionArgs=%s)'
                                % (sysaddon, tools.quote(json.dumps(item['trakt_object'])))))
 
 
@@ -384,9 +389,9 @@ class Menus:
                     name = item['info']['title']
 
                     args = tools.quote(json.dumps(args, sort_keys=True))
-                    cm.append(('Torrent file select',
+                    cm.append((tools.lang(32210),
                                'XBMC.RunPlugin(%s?action=filePicker&actionArgs=%s)' % (sysaddon, args)))
-                    cm.append(('Source Select',
+                    cm.append((tools.lang(32047),
                                'PlayMedia(%s?action=getSources&source_select=true&actionArgs=%s)' % (sysaddon, args)))
                 except:
                     import traceback
@@ -462,11 +467,11 @@ class Menus:
                     except:
                         pass
 
-                cm.append(('Trakt Manager',
+                cm.append((tools.lang(32205),
                            'RunPlugin(%s?action=traktManager&actionArgs=%s)'
                            % (sysaddon, tools.quote(json.dumps(item['trakt_object'])))))
 
-                cm.append(('Browse Show',
+                cm.append((tools.lang(32211),
                            'XBMC.Container.Update(%s?action=showSeasons&actionArgs=%s)' %
                            (sysaddon, tools.quote(json.dumps(item['showInfo'])))))
 
@@ -491,9 +496,9 @@ class Menus:
                     item['info']['title'] = item['info']['originaltitle'] = name
 
                     args = tools.quote(json.dumps(args, sort_keys=True))
-                    cm.append(('Torrent file select',
+                    cm.append((tools.lang(32210),
                                'RunPlugin(%s?action=filePicker&actionArgs=%s)' % (sysaddon, args)))
-                    cm.append(('Source Select',
+                    cm.append((tools.lang(32047),
                                'PlayMedia(%s?action=getSources&source_select=true&actionArgs=%s)' % (sysaddon, args)))
 
                 except:
@@ -565,18 +570,18 @@ class Menus:
                 else:
                     set_cast = None
 
-                cm.append(('Shuffle Play', 'XBMC.RunPlugin(%s?action=shufflePlay&actionArgs=%s)' % (sysaddon,
-                                                                                                    args)))
+                cm.append((tools.lang(32212), 'XBMC.RunPlugin(%s?action=shufflePlay&actionArgs=%s)' % (sysaddon,
+                                                                                                       args)))
 
                 if tools.getSetting('smartplay.clickresume') == 'true' or forceResume is True:
                     action = 'smartPlay'
-                    cm.append(('Expand Show', 'XBMC.Container.Update(%s?action=showSeasons&actionArgs=%s)'
+                    cm.append((tools.lang(32213), 'XBMC.Container.Update(%s?action=showSeasons&actionArgs=%s)'
                                % (sysaddon, args)))
                 else:
                     action = 'showSeasons'
 
                 # Context Menu Items
-                cm.append(('Trakt Manager', 'RunPlugin(%s?action=traktManager&actionArgs=%s)'
+                cm.append((tools.lang(32205), 'RunPlugin(%s?action=traktManager&actionArgs=%s)'
                            % (sysaddon, tools.quote(json.dumps(item['trakt_object'])))))
                 cm.append((tools.lang(32020),
                            'Container.Update(%s?action=showsRelated&actionArgs=%s)' % (sysaddon, item['ids']['trakt'])))

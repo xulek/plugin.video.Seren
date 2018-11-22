@@ -717,5 +717,295 @@ msgctxt "#32178"
 msgid "Cache Assist"
 msgstr ""
 
+msgctxt "#32179"
+msgid "Cache Cleared"
+msgstr ""
 
+msgctxt "#32180"
+msgid "This code has been copied to your clipboard"
+msgstr ""
+
+msgctxt "#32181"
+msgid "Authorised Real Debrid successfully"
+msgstr ""
+
+msgctxt "#32182"
+msgid "Real Debrid Token Refreshed"
+msgstr ""
+
+msgctxt "#32183"
+msgid "Refreshing RD Token"
+msgstr ""
+
+msgctxt "#32184"
+msgid "Cache Assist History"
+msgstr ""
+
+msgctxt "#32185"
+msgid "Current Premiumize Transfers"
+msgstr ""
+
+msgctxt "#32186"
+msgid "Current Real Debrid Transfers"
+msgstr ""
+
+msgctxt "#32187"
+msgid "Clear Non Active..."
+msgstr ""
+
+msgctxt "#32188"
+msgid "Continue Watching"
+msgstr ""
+
+msgctxt "#32189"
+msgid "Provider Tools"
+msgstr ""
+
+msgctxt "#32190"
+msgid "Debrid Services"
+msgstr ""
+
+msgctxt "#32191"
+msgid "Clear Local Torrent cache"
+msgstr ""
+
+msgctxt "#32192"
+msgid "Open Settings Menu"
+msgstr ""
+
+msgctxt "#32193"
+msgid "Wipe Addon Data"
+msgstr ""
+
+msgctxt "#32194"
+msgid "Install Provider Package"
+msgstr ""
+
+msgctxt "#32195"
+msgid "Uninstall Provider Package"
+msgstr ""
+
+msgctxt "#32196"
+msgid "Enable Providers"
+msgstr ""
+
+msgctxt "#32197"
+msgid "Disable Providers"
+msgstr ""
+
+msgctxt "#32198"
+msgid "Movies"
+msgstr ""
+
+msgctxt "#32199"
+msgid "Shows"
+msgstr ""
+
+msgctxt "#32200"
+msgid "Genres"
+msgstr ""
+
+msgctxt "#32201"
+msgid "My Movie Lists"
+msgstr ""
+
+msgctxt "#32202"
+msgid "Multi Select..."
+msgstr ""
+
+msgctxt "#32203"
+msgid "Next"
+msgstr ""
+
+msgctxt "#32204"
+msgid "Source Select"
+msgstr ""
+
+msgctxt "#32205"
+msgid "Trakt Manager"
+msgstr ""
+
+msgctxt "#32206"
+msgid "Next Up"
+msgstr ""
+
+msgctxt "#32207"
+msgid "Unfinished Shows in Collection"
+msgstr ""
+
+msgctxt "#32208"
+msgid "Recent Episodes"
+msgstr ""
+
+msgctxt "#32209"
+msgid "My Show Lists"
+msgstr ""
+
+msgctxt "#32210"
+msgid "Torrent file select"
+msgstr ""
+
+msgctxt "#32211"
+msgid "Browse Show"
+msgstr ""
+
+msgctxt "#32212"
+msgid "Shuffle Play"
+msgstr ""
+
+msgctxt "#32213"
+msgid "Expand Show"
+msgstr ""
+
+msgctxt "#32214"
+msgid "Cache Assist is attempting to build a torrent source"
+msgstr ""
+
+msgctxt "#32215"
+msgid "Failed to start premiumize debrid transfer"
+msgstr ""
+
+msgctxt "#32216"
+msgid "New cached sources have been created for"
+msgstr ""
+
+msgctxt "#32217"
+msgid "Could not create cache for magnet"
+msgstr ""
+
+msgctxt "#32218"
+msgid "REAL DEBRID CACHE ASSIST STARTING"
+msgstr ""
+
+msgctxt "#32219"
+msgid "TRANSFER PREMIUMIZE"
+msgstr ""
+
+msgctxt "#32220"
+msgid "Adding Provider"
+msgstr ""
+
+msgctxt "#32221"
+msgid "Getting Trakt Resume Point"
+msgstr ""
+
+msgctxt "#32222"
+msgid "Self Offset is equal to"
+msgstr ""
+
+msgctxt "#32223"
+msgid "Seeking"
+msgstr ""
+
+msgctxt "#32224"
+msgid "No seeking applied"
+msgstr ""
+
+msgctxt "#32225"
+msgid "Locate Provider Zip"
+msgstr ""
+
+msgctxt "#32226"
+msgid "Enter Zip URL"
+msgstr ""
+
+msgctxt "#32227"
+msgid "Sorry, SMB shares are not supported"
+msgstr ""
+
+msgctxt "#32228"
+msgid "Unable to connect to file.\nPlease check URL and try again."
+msgstr ""
+
+msgctxt "#32229"
+msgid "Installing:"
+msgstr ""
+
+msgctxt "#32230"
+msgid "Author:"
+msgstr ""
+
+msgctxt "#32231"
+msgid "Are you sure you wish to proceed?"
+msgstr ""
+
+msgctxt "#32232"
+msgid "Custom Sources Install"
+msgstr ""
+
+msgctxt "#32233"
+msgid "Cancel"
+msgstr ""
+
+msgctxt "#32234"
+msgid "Install"
+msgstr ""
+
+msgctxt "#32235"
+msgid "Extracting"
+msgstr ""
+
+msgctxt "#32236"
+msgid "Please Wait..."
+msgstr ""
+
+msgctxt "#32237"
+msgid "Successfully Installed"
+msgstr ""
+
+msgctxt "#32238"
+msgid "Failed to install"
+msgstr ""
+
+msgctxt "#32239"
+msgid "Please check the log for further details"
+msgstr ""
+
+msgctxt "#32240"
+msgid "Source pack is malformed, please check and correct issue in the meta file"
+msgstr ""
+
+msgctxt "#32241"
+msgid "Begining Link Resolver"
+msgstr ""
+
+msgctxt "#32242"
+msgid "Begining SmartPlay"
+msgstr ""
+
+msgctxt "#32243"
+msgid "Identifying Resume Point"
+msgstr ""
+
+msgctxt "#32244"
+msgid "Error: Trakt is not authorized \n\nPlease disable the Smart Episode Resume feature or alternatively authorise Trakt in the settings menu"
+msgstr ""
+
+msgctxt "#32245"
+msgid "Building PlayList"
+msgstr ""
+
+msgctxt "#32246"
+msgid "Building List Items"
+msgstr ""
+
+msgctxt "#32247"
+msgid "Starting Playback"
+msgstr ""
+
+msgctxt "#32248"
+msgid "Begining play from Season %s Episode %s"
+msgstr ""
+
+msgctxt "#32249"
+msgid "Source Selection"
+msgstr ""
+
+msgctxt "#32250"
+msgid "Source Selection was cancelled"
+msgstr ""
+
+msgctxt "#32251"
+msgid "Selected Position"
+msgstr ""
 

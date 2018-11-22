@@ -40,7 +40,7 @@ class providers:
                     check = True
                     pass
             if check is False:
-                tools.log('Adding Provider %s' % provider[1])
+                tools.log('%s %s' % (tools.lang(32220), provider[1]))
                 database.add_provider(provider[1], provider[2], 'enabled', self.language, 'torrent')
                 check = False
 
@@ -54,7 +54,7 @@ class providers:
                 if provider[2] == kp['package'] and provider[1] == kp['provider_name']:
                     check = True
             if check is False:
-                tools.log('Adding Provider %s' % provider[1])
+                tools.log('%s %s' % (tools.lang(32220), provider[1]))
                 database.add_provider(provider[1], provider[2], 'enabled', self.language, 'hoster')
                 check = False
 
@@ -68,8 +68,8 @@ class providers:
         if len(self.known_providers) == 0:
             self.known_providers = database.get_providers()
         packages = list(set([provider['package'] for provider in self.known_providers]))
-        selection = tools.showDialog.select("%s: %s Providers" %
-                                            (tools.addonName, action[:-1].title()), packages)
+        selection = tools.showDialog.select("%s: %s %s" %
+                                            (tools.addonName, action[:-1].title(), tools.lang(32123)), packages)
 
         if selection == -1:
             return

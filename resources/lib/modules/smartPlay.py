@@ -1,10 +1,11 @@
-from resources.lib.indexers.trakt import TraktAPI
+import json
+
 from resources.lib.common import tools
 from resources.lib.gui import tvshowMenus
-from resources.lib.modules import database
 from resources.lib.gui import windows
+from resources.lib.indexers.trakt import TraktAPI
+from resources.lib.modules import database
 
-import json
 
 class SmartPlay:
 
@@ -33,19 +34,17 @@ class SmartPlay:
 
         self.window.setBackground(self.poster)
 
-        self.window.setText("Begining SmartPlay")
+        self.window.setText(tools.lang(32242))
         self.window.show()
         self.window.setProgress(0)
         self.window.setProgress(40)
-        self.window.setText('Identifying Resume Point')
+        self.window.setText(tools.lang(32243))
 
         tools.playList.clear()
 
         if 'episodeInfo' not in self.info_dictionary:
             if tools.getSetting('trakt.auth') == '':
-                tools.showDialog.ok(tools.addonName, 'Error: Trakt is not authorized \n\nPlease disable the Smart '
-                                                     'Episode Resume feature or alternatively '
-                                                     'authorise Trakt in the settings menu')
+                tools.showDialog.ok(tools.addonName, tools.lang(32244))
                 return
             season, episode = self.get_resume_episode()
 
@@ -62,7 +61,7 @@ class SmartPlay:
             season = self.info_dictionary['episodeInfo']['info']['season']
             episode = self.info_dictionary['episodeInfo']['info']['episode']
 
-        self.window.setText('Building PlayList')
+        self.window.setText(tools.lang(32245))
         self.window.setProgress(60)
 
         episode_list = database.get(TraktAPI().json_response, 12, 'shows/%s/seasons/%s?extended=full' % (self.show_trakt_id, str(season)))
@@ -74,18 +73,18 @@ class SmartPlay:
                 continue
             playlist.append(i)
 
-        self.window.setText('Building List Items')
+        self.window.setText(tools.lang(32246))
         self.window.setProgress(80)
 
         playlist = tvshowMenus.Menus().episodeListBuilder(playlist, self.info_dictionary, smartPlay=True)
         playlist = playlist[:40]
-        self.window.setText('Starting Playback')
+        self.window.setText(tools.lang(32247))
         self.window.setProgress(100)
 
         for i in playlist:
             tools.playList.add(url=i[0], listitem=i[1])
 
-        tools.log('Begining play from Season %s Episode %s' % (season, episode), 'info')
+        tools.log(tools.lang(32248) % (season, episode), 'info')
 
         self.window.close()
 
@@ -166,7 +165,7 @@ class SmartPlay:
         self.window.setBackground(self.poster)
         self.window.setProgress(0)
         self.window.show()
-        self.window.setText('Building Playlist')
+        self.window.setText(tools.lang(32245))
         tools.playList.clear()
         showInfo = {}
         showInfo['showInfo'] = self.info_dictionary
@@ -174,7 +173,7 @@ class SmartPlay:
         if season_list[0]['number'] == 0:
             season_list.pop(0)
         self.window.setProgress(50)
-        self.window.setText('Building List Items')
+        self.window.setText(tools.lang(32246))
         episode_list = [episode for season in season_list for episode in season['episodes']]
         random.shuffle(episode_list)
         episode_list = episode_list[:40]
@@ -182,7 +181,7 @@ class SmartPlay:
         #mill the episodes
         playlist = tvshowMenus.Menus().episodeListBuilder(episode_list, showInfo, smartPlay=True)
         self.window.setProgress(100)
-        self.window.setText('Starting Scraping')
+        self.window.setText(tools.lang(32162))
         for episode in playlist:
             if episode is not None:
                 tools.playList.add(url=episode[0], listitem=episode[1])
